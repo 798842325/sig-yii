@@ -26,7 +26,7 @@ $this->title = $meta_title;
                     <div class="ibox-title">
                         <h5><?=$meta_title?></h5>
                         <div class="ibox-tools">
-                            <a href="<?=Url::to(['/admin'])?>">
+                            <a href="<?=Url::to(['index'])?>">
                                 <button type="button" class="btn btn-warning  btn-xs">
                                     <i class="fa  fa-mail-reply-all"></i><span class="bold">返回</span>
                                 </button>
