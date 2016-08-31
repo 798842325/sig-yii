@@ -173,6 +173,11 @@ class RoleController extends BaseController
     }
 
 
+    /**
+     * 分配角色用户
+     * @param $id
+     * @return string
+     */
     public function actionAllotuser($id){
         $resMsg = [];
         //获取当前分配角色
@@ -181,10 +186,12 @@ class RoleController extends BaseController
         $model= new AuthGroupAccess();
 
         if(Yii::$app->request->post()){
+            //处理数据
             $d_uid=Yii::$app->request->post('uid');
             foreach ($d_uid as $v){
                 $data[]=[ 'uid' =>$v,'group_id'=> $id];
             }
+            //删除原始旧数据
             $model ->find()->createCommand()->delete('{{%auth_group_access}}','group_id='.$id)->execute();
             if($model->find()->createCommand()->batchInsert('{{%auth_group_access}}',['uid','group_id'],$data)->execute()){
                 $resMsg =['status'=>1,'title'=>'分配','info'=>'分配成功','url'=>Url::to(['index'],true)];
