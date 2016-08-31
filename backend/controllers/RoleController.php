@@ -2,7 +2,9 @@
 
 namespace backend\controllers;
 
+use common\models\Admin;
 use common\models\AuthGroup;
+use common\models\AuthGroupAccess;
 use common\models\AuthRule;
 use Yii;
 use yii\data\Pagination;
@@ -170,4 +172,35 @@ class RoleController extends BaseController
         return json_encode($resMsg);
     }
 
+
+    public function actionAllotuser($id){
+        $resMsg = [];
+        //获取当前分配角色
+        $d_role=AuthGroup::find()->where(['id'=>$id])->one();
+
+        $model= new AuthGroupAccess();
+
+        if(Yii::$app->request->post()){
+            $d_uid=Yii::$app->request->post('uid');
+            foreach ($d_uid as $v){
+                $data[]=[ 'uid' =>$v,'group_id'=> $id];
+            }
+            $model ->find()->createCommand()->delete('{{%auth_group_access}}','group_id='.$id)->execute();
+            if($model->find()->createCommand()->batchInsert('{{%auth_group_access}}',['uid','group_id'],$data)->execute()){
+                $resMsg =['status'=>1,'title'=>'分配','info'=>'分配成功','url'=>Url::to(['index'],true)];
+            }else{
+                $resMsg =['status'=>0,'title'=>'分配','info'=>'分配失败'];
+            }
+        }
+
+        //实例化模型
+        $Admin = new Admin();
+        $Query = $Admin ->find();
+        //获取所有用户
+        $d_admin=$Query ->all();
+        //获取已分配的用户
+        $to_admin=$Query ->where(['in','id',$model ->find()->select(['uid'])->where(['group_id'=>$id])])->all();
+
+        return $this->render('AllotUserform', ['meta_title'=>'分配用户:','to_admin'=>$to_admin,'d_role'=>$d_role,'d_admin'=>$d_admin,'model'=>$model,'resMsg'=>json_encode($resMsg)]);
+    }
 }

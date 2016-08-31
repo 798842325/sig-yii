@@ -61,6 +61,7 @@ $this->title = $meta_title;
                             <td><?=$td['description'] ?></td>
                             <td><?=$td['status']?Html::a('禁用',['state','id'=>$td['id'],'status'=>0],['class'=>'ajax-get']):Html::a('启用',['state','id'=>$td['id'],'status'=>1],['class'=>'ajax-get'])?></td>
                             <td class="text-navy">
+                                <?= Html::a('分配用户', ['allotuser','id'=>$td['id']]) ?>
                                 <?= Html::a('编辑', ['update','id'=>$td['id']]) ?>
                                 <?= Html::a('删除', ['delete','id'=>$td['id']],['class'=>'ajax-del','ajax-form-method'=>'POST']) ?>
                             </td>
