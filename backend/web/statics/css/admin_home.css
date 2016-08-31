@@ -1,0 +1,61 @@
+.container-fluid{ padding:0px; }
+
+/*导航头部*/
+header .navbar{ background: #656565; border-radius:0px; height:50px;}
+.navbar>.container-fluid .navbar-brand{ margin: 0px; }
+header .navbar-brand{ padding:5px 5px; margin: 0px; width: 200px;}
+header .navbar-brand img{ height:40px; margin: 0 auto; }
+header .navbar .collapse  .nav a{ color:#ffffff;}
+header .navbar{margin:0px; border:0px;}
+
+header .navbar-default .navbar-nav>.active>a{ background: none; }
+/*, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover*/
+header .navbar-default .navbar-nav>.active a{border-bottom: 3px solid #7ED321;}
+header .navbar-nav>li>a{padding-bottom:12px;}
+
+
+
+aside{ position:absolute; z-index: 99; left: 0px; background: #16589F; width: 200px; padding:10px 0px; height: 93%; }
+aside dl .active{ border-left:4px solid #7ED321; padding-left:38px;}
+aside dl dd:hover{border-left:4px solid #7ED321; padding-left:38px;}
+aside dl dd{display: none;}
+
+
+/*登录用户信息*/
+aside .login-users-info{ color:#ffffff; background: #2F67A5; text-align: center; height:90px; padding:10px;}
+aside .login-users-info p{font-size:12px;}
+
+.login-users-info .login-users-name{ font-size:16px; text-align: center;}
+
+.login-info-sub{margin: 0px;}
+
+.msg-tz{margin:10px 0px; }
+.msg-tz span{ background:#2F67A5; display: inline-block; width: 49%; text-align: center; color:#ffffff; font-size:20px; padding:8px;}
+aside dl{ color:rgba(255,255,255,0.8); margin:0px !important; }
+aside dl dt{ background: #2F67A5; font-size:14px; padding:6px 8px 6px 15px;  }
+aside dl dt i{ float:right; }
+aside dl dd{ background: #194475; font-size:12px; padding:6px 8px 6px 30px; border-bottom:1px solid rgba(220,220,220,0.1);}
+aside dl dd a{ color:#ffffff; }
+aside dl .active a{ color:#ffffff; }
+aside dl dt .glyphicon-menu-up{ display: none;}
+
+
+html,body{ overflow: hidden; height:100%; }
+
+section{margin-left:200px; height:100%; overflow: hidden;}
+section iframe{ width:100%; height:100%; }
+
+.tabNav{padding-top:10px; color:#ffffff;}
+
+.tabNav>div{ display: inline-block; }
+.tabNav>div:first-child{ width:89%;}
+.tabNav>div:first-child ul li{ height:30px; padding:8px 20px 8px 20px; margin-right:-2px; border-radius:12px 12px 0 0; background: #CDCDCD; display: inline-block;}
+.tabNav>div:first-child ul li em{ position: relative; top:-8px; right:-8px;}
+.tabNav ul .active{ background: #F1F1F1 !important; color:#2e3436; }
+.tabNav ul{ padding: 0px; margin:0px; }
+.tabNav .operation span{ display: inline-block; background:#CDCDCD; height:30px; padding:8px 10px 8px 10px; }
+
+
+.tab-iframe{ height:100%; }
+
+.navtab{ overflow: hidden; height:30px;}

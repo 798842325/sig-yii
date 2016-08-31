@@ -1,0 +1,9 @@
+body{ background: #ffffff;}
+
+.form-body{ padding:40px; }
+
+
+form .control-label{ color:#555; font-weight: 100; }
+form .btn[type='submit']{ background:#5a98de; color:#ffffff; width:80px; border:0px; }
+
+

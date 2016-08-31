@@ -1,0 +1,22 @@
+body{background: #F1F1F1;}
+
+.list-body{ padding: 20px;  height:100%; }
+
+table{ background: #ffffff; }
+
+.list-screen{ padding:10px 0px; text-align: center;}
+.list-screen .btn[type="submit"]{ background: #16589F; letter-spacing:6px; color:#ffffff; border:0px;border-radius:0px; margin-left:-4px; }
+.list-screen input{ border:0px; border-radius:0px;}
+
+
+.list-but{ height: 60px; line-height: 60px; border-bottom:1px solid #ffffff; border-top:1px solid #ffffff; margin:20px 0px;}
+.list-but .del-all-btn{ background: #E9AFAF; color:#ffffff; border:0px; }
+.list-but .add-btn{ background: #ADD681; color:#ffffff;border:0px; }
+
+table thead th{ text-align: center; font-size:14px; }
+table tbody td{ text-align: center; font-size:12px;  color:rgba(100,100,100,1);}
+
+table .del-btn{ color:red; }
+table .operate-btn{ font-size: 13px; }
+
+
