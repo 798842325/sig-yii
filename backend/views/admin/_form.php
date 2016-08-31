@@ -7,7 +7,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model common\models\AuthItem */
 
-$this->title = '更新: ' . $model->username;
+$this->title = $meta_title;
 
 ?>
 
