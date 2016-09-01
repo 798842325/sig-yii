@@ -42,4 +42,9 @@ class AuthGroupAccess extends \yii\db\ActiveRecord
             'group_id' => 'Group ID',
         ];
     }
+
+    public function getAuthGroup()
+    {
+        return $this->hasMany(AuthGroup::className(), ['id' => 'group_id']);
+    }
 }

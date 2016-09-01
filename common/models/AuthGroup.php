@@ -50,4 +50,14 @@ class AuthGroup extends \yii\db\ActiveRecord
             'description' => 'Description',
         ];
     }
+
+    /**
+     * 根据用户id获取用户组,返回值为数组
+     * @param $uid
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public function getGroups($uid){
+       $sqlGroupId = AuthGroupAccess::find()->select(['group_id'])->where(['uid'=>$uid]);
+       return $this ->find()->where(['in','id',$sqlGroupId])->asArray()->all();
+    }
 }

@@ -52,4 +52,21 @@ class AuthRule extends \yii\db\ActiveRecord
             'condition' => 'Condition',
         ];
     }
+
+
+    /**
+     * 根据用户id获取 用户拥有规则
+     * @param $uid
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public function getRule($uid){
+        $AuthGroup=new AuthGroup();
+        $rule_id= $AuthGroup->getGroups($uid);
+        $arr_rule =[];
+        foreach ($rule_id as $v){
+            $arr_rule = array_merge($arr_rule,explode(',',$v['rules']));
+        }
+
+        return $this ->find()->where(['in','id',$arr_rule])->asArray()->all();
+    }
 }
