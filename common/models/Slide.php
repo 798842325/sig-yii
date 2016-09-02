@@ -31,6 +31,7 @@ class Slide extends \yii\db\ActiveRecord
         return [
             [['status'], 'integer'],
             [['slide_id', 'title', 'picture'], 'string', 'max' => 255],
+            [['sort','url'],'filter', 'filter' => 'trim', 'skipOnArray' => true],
         ];
     }
 

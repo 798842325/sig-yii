@@ -22,13 +22,14 @@ use yii\filters\AccessControl;
 class BaseController extends Controller
 {
 
+
     /**
      * @inheritdoc
      */
     public function beforeAction($action)
     {
-        if(parent::beforeAction($action)){
 
+        if(parent::beforeAction($action)){
             if(!Yii::$app->user->isGuest){
                 Yii::$app->params['menu']=$this ->getMenu();
             }

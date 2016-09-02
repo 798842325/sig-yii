@@ -40,9 +40,11 @@ $this->title = $meta_title;
                                 <option value="0">/</option>
                                 <?php foreach ($d_menu as $v): ?>
                                     <option value="<?=$v['id']?>" <?=$model->pid==$v['id']?'selected':'' ?>><?=$v['name']?></option>
-                                    <?php foreach ($v['_child'] as $vs): ?>
-                                        <option value="<?=$vs['id']?>" <?=$model->pid==$vs['id']?'selected':'' ?>>&nbsp;&nbsp;|-<?=$vs['name']?></option>
-                                    <?php endforeach; ?>
+                                    <?php if (!empty($vm['_child'])): ?>
+                                        <?php foreach ($v['_child'] as $vs): ?>
+                                            <option value="<?=$vs['id']?>" <?=$model->pid==$vs['id']?'selected':'' ?>>&nbsp;&nbsp;|-<?=$vs['name']?></option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
                             <div class="help-block"></div>
