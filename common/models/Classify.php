@@ -5,11 +5,15 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%sig_classify}}".
+ * This is the model class for table "{{%classify}}".
  *
  * @property integer $id
- * @property string $name
+ * @property string $name_id
  * @property string $title
+ * @property integer $status
+ * @property integer $sort
+ * @property string $cover
+ * @property integer $pid
  */
 class Classify extends \yii\db\ActiveRecord
 {
@@ -27,8 +31,8 @@ class Classify extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name_id', 'title'], 'string', 'max' => 255],
+            [['status', 'sort', 'pid','cate_id'], 'integer'],
+            [[ 'title', 'cover'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,13 +43,14 @@ class Classify extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name_id' => 'Name',
+            'cate_id' => 'Cate ID',
             'title' => 'Title',
+            'status' => 'Status',
+            'sort' => 'Sort',
+            'cover' => 'Cover',
+            'pid' => 'Pid',
         ];
     }
 
 
-    public function getservice(){
-        return  $this->hasMany(Service::className(),['cate_id'=>'id']);
-    }
 }

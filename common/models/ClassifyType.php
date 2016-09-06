@@ -5,12 +5,13 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%sig_classify_type}}".
+ * This is the model class for table "{{%classify_type}}".
  *
  * @property string $name
  * @property string $title
  * @property string $description
  * @property integer $status
+ * @property integer $type
  */
 class ClassifyType extends \yii\db\ActiveRecord
 {
@@ -29,7 +30,7 @@ class ClassifyType extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['status'], 'integer'],
+            [['status', 'type'], 'integer'],
             [['name', 'title', 'description'], 'string', 'max' => 255],
         ];
     }
@@ -44,12 +45,12 @@ class ClassifyType extends \yii\db\ActiveRecord
             'title' => 'Title',
             'description' => 'Description',
             'status' => 'Status',
+            'type' => 'Type',
         ];
     }
 
+
     public function getclassify(){
-        return  $this->hasMany(Classify::className(),['name_id'=>'name']);
+        return  $this->hasMany(Classify::className(),['cate_id'=>'id','status'=>'status']);
     }
-
-
 }
