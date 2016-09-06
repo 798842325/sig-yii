@@ -45,8 +45,10 @@ $this->title = $meta_title;
                     <table class="table table-hover table-list">
                         <thead>
                         <tr>
+                            <th>ID</th>
+                            <th>标题</th>
                             <th>标识</th>
-                            <th>规则表达式</th>
+                            <th>描述</th>
                             <th>状态</th>
                             <th>操作</th>
                         </tr>
@@ -55,12 +57,14 @@ $this->title = $meta_title;
 
                         <?php foreach ($model as $td): ?>
                         <tr>
-                            <td><?=$td['slide'] ?></td>
+                            <td><?=$td['id'] ?></td>
                             <td><?=$td['title']?></td>
-                            <td><?=$td['status']?Html::a('禁用',['state','id'=>$td['slide'],'status'=>0],['class'=>'ajax-get']):Html::a('启用',['state','id'=>$td['slide'],'status'=>1],['class'=>'ajax-get'])?></td>
+                            <td><?=$td['name'] ?></td>
+                            <td><?=$td['describe']?></td>
+                            <td><?=$td['status']?Html::a('禁用',['state','id'=>$td['id'],'status'=>0],['class'=>'ajax-get']):Html::a('启用',['state','id'=>$td['id'],'status'=>1],['class'=>'ajax-get'])?></td>
                             <td class="text-navy">
-                                <?= Html::a('编辑', ['update','id'=>$td['slide']]) ?>
-                                <?= Html::a('删除', ['delete','id'=>$td['slide']],['class'=>'ajax-del','ajax-form-method'=>'POST']) ?>
+                                <?= Html::a('编辑', ['update','id'=>$td['id']]) ?>
+                                <?= Html::a('删除', ['delete','id'=>$td['id']],['class'=>'ajax-del','ajax-form-method'=>'POST']) ?>
                             </td>
                         </tr>
                         <?php endforeach ?>

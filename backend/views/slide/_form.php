@@ -40,7 +40,7 @@ $this->title = $meta_title;
                                 <div class="col-sm-4 m-l-n">
                                     <select class="form-control" multiple=""  name="<?=$model ->formName()?>[slide_id]">
                                         <?php foreach ($d_slideType as $v): ?>
-                                            <option value="<?=$v['slide']?>" <?=$model->slide_id==$v['slide']?'selected':'' ?>><?=$v['title']?></option>
+                                            <option value="<?=$v['id']?>" <?=$model->slide_id==$v['id']?'selected':'' ?>><?=$v['title']?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>

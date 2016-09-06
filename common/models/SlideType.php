@@ -27,9 +27,9 @@ class SlideType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['slide'], 'required'],
+            [['name'], 'required'],
             [['status'], 'integer'],
-            [['slide', 'title'], 'string', 'max' => 255],
+            [['name', 'title','describe'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,13 +39,13 @@ class SlideType extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'slide' => 'Slide',
+            'name' => 'name',
             'title' => 'Title',
             'status' => 'Status',
         ];
     }
 
     public function getslide(){
-        return  $this->hasMany(Slide::className(),['slide_id'=>'slide']);
+        return  $this->hasMany(Slide::className(),['slide_id'=>'id','status'=>'status']);
     }
 }

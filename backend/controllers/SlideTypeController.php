@@ -87,7 +87,7 @@ class SlideTypeController extends BaseController
         $resMsg = [];
         $model = new SlideType();
 
-        $model = $model->find()->where(['slide'=>$id])->one();
+        $model = $model->find()->where(['id'=>$id])->one();
 
         if ($model->load(Yii::$app->request->post())) {
 
@@ -115,7 +115,7 @@ class SlideTypeController extends BaseController
 
         if (Yii::$app->request->post()) {
 
-            if($model ->find()->where(['slide'=>$id])->one()->delete()){
+            if($model ->find()->where(['id'=>$id])->one()->delete()){
                 $resMsg=['status'=>1,'title'=>'删除','info'=>'删除成功','url'=>Url::to(['index'],true)];
             }else{
                 $resMsg =['status'=>0,'title'=>'删除','info'=>'删除失败'];
@@ -134,7 +134,7 @@ class SlideTypeController extends BaseController
     public function actionState($id,$status){
         $model = new SlideType();
 
-        $model = $model->find()->where(['slide'=>$id])->one(); //获取id等于$id的模型
+        $model = $model->find()->where(['id'=>$id])->one(); //获取id等于$id的模型
 
         $model->status = $status; //修改status属性值
 

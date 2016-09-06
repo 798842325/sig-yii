@@ -29,8 +29,8 @@ class Slide extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status'], 'integer'],
-            [['slide_id', 'title', 'picture'], 'string', 'max' => 255],
+            [['status','slide_id'], 'integer'],
+            [[ 'title', 'picture'], 'string', 'max' => 255],
             [['sort','url'],'filter', 'filter' => 'trim', 'skipOnArray' => true],
         ];
     }
@@ -47,5 +47,26 @@ class Slide extends \yii\db\ActiveRecord
             'picture' => 'Picture',
             'status' => 'Status',
         ];
+    }
+
+    public function getslidetype(){
+        return  $this->hasMany(SlideType::className(),['slide'=>'slide_id','status'=>'status']);
+    }
+
+    /**
+     * 获取 轮播
+     * @param array $SlideType
+     * @return mixed
+     */
+    public function getSlide($SlideType=[]){
+        $slide= $this ->find()->where(['in','slide',$SlideType])->joinWith(['slidetype'=>function($query){
+            $query ->where(['{{%slide_type}}.status'=>1]);
+        }],false)->asArray()->all();
+        foreach ($slide as $v){
+            $arr[$v['slide_id']][] = $v;
+        }
+
+     return $arr;
+
     }
 }

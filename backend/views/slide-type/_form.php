@@ -37,8 +37,9 @@ $this->title = $meta_title;
 
                         <?=$form->field($model,'title')->textInput(['class'=>'form-control'])->label('名称：',['class'=>'col-sm-2  control-label'])?>
 
-                        <?=$form->field($model,'slide')->textInput(['class'=>'form-control'])->label('标识：',['class'=>'col-sm-2  control-label'])?>
+                        <?=$form->field($model,'name')->textInput(['class'=>'form-control'])->label('标识：',['class'=>'col-sm-2  control-label'])?>
 
+                        <?=$form->field($model,'describe')->textarea(['class'=>'form-control'])->label('描述：',['class'=>'col-sm-2  control-label'])?>
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">

@@ -150,4 +150,24 @@ class SlideController extends BaseController
         return json_encode($resMsg);
     }
 
+
+    /**
+     *  分类 更新缓存
+     * @return bool
+     */
+    public function actionCacheSlide(){
+        $model =  new SlideType();
+        $cache = Yii::$app->cache;
+
+        $d_slide= $model ->find()->joinWith([
+            'slide' => function ($query) { $query->where('{{%slide}}.status =1')->orderBy(['sort'=>SORT_DESC]);}
+        ])->asArray()->all();
+
+        foreach ($d_slide as $k=>$v){
+            $cache->set($v['name'], $v['slide']);
+        }
+
+        return true;
+    }
+
 }

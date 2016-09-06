@@ -21,6 +21,7 @@ $this->title = $meta_title;
                         <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><?= Html::a('新增', ['create'])?></li>
+                            <li><?= Html::a('缓存轮播', ['cache-slide'])?></li>
                             <li><a href="buttons.html#">禁用</a></li>
                             <li class="divider"></li>
                             <li><a href="buttons.html#">删除</a>
