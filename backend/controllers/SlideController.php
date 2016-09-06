@@ -164,9 +164,10 @@ class SlideController extends BaseController
         ])->asArray()->all();
 
         foreach ($d_slide as $k=>$v){
-            $cache->set($v['name'], $v['slide']);
+           $arr[$v['name']] = $v['slide'];
         }
 
+        $cache->set('SLIDE',$arr);
         return true;
     }
 
