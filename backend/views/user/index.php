@@ -1,0 +1,136 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+use yii\widgets\LinkPager;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
+
+
+$this->title = '用户管理';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5><?= Html::encode($this->title) ?></h5>
+                    <div class="ibox-tools">
+                        <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><?= Html::a('新增', ['create']) ?></li>
+                            <li><a href="buttons.html#">禁用</a></li>
+                            <li class="divider"></li>
+                            <li><a href="buttons.html#">删除</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-8 m-b-xs">
+
+                        </div>
+                        <div class="col-sm-4">
+                            <?php $form = ActiveForm::begin() ?>
+                            <div class="input-group">
+                                <input type="text" name="keywords" placeholder="请输入关键词" class="input-sm form-control">
+                                <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-sm btn-primary"> 搜索</button>
+                                    </span>
+                            </div>
+                            <?php ActiveForm::end(); ?>
+                        </div>
+                    </div>
+                    <table class="table table-hover table-list">
+                        <thead>
+                        <tr>
+                            <th>UID</th>
+                            <th>头像</th>
+                            <th>昵称</th>
+                            <th>类型</th>
+                            <th>用户名</th>
+                            <th>邮箱</th>
+                            <th>手机</th>
+                            <th>注册时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php $type=['管理员','客户','中介']; ?>
+                        <?php foreach ($model as $td): ?>
+                        <tr>
+                            <td><?=$td['id']?></td>
+                            <td><img src="<?=$td['avatar']?>"  width="40px" alt=""></td>
+                            <td><?=$td['nickname']?></td>
+                            <td><?=$type[$td['type']]?></td>
+                            <td><?=$td['username']?></td>
+                            <td><?=$td['email']?></td>
+                            <td><?=$td['phone']?></td>
+                            <td><?=date('Y.m.d H:i:s',$td['created_at'])?></td>
+
+                            <td class="text-navy">
+                                <?= Html::a('编辑', ['update','id'=>$td['id']]) ?>
+                                <?= Html::a('删除', ['delete','id'=>$td['id']],['class'=>'ajax-del','ajax-form-method'=>'POST']) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <?= $this->render('/_page', ['pages' => $pages,]) ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.ajax-del').click(function () {
+        var t = $(this);
+        var ajaxUrl = t.attr('href');
+        var ajaxMethod = t.attr('ajax-form-method');
+        var ajaxData = "_csrf=<?php  echo Yii::$app->getRequest()->getCsrfToken(); ?>&"+t.attr('ajax-form-data');
+
+        swal({
+            title: "您确定要删除这条信息吗",
+            text: "删除后将无法恢复，请谨慎操作！",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "删除",
+            cancelButtonText:'取消',
+            closeOnConfirm: true
+        }, function (isConfirm) {
+            if(isConfirm){
+                $.ajax({
+                    type: ajaxMethod,
+                    url: ajaxUrl,
+                    dataType:'json',
+                    data: ajaxData,
+                    success: function(msg){
+
+                        setTimeout(function(){
+                            if(msg.status){
+                                swal(msg.title, msg.info, "success");
+                                t.parents('tr').empty();
+                            }else{
+                                swal(msg.title, msg.info, "error");
+                            }
+                        }, 100);
+
+                    }
+                });
+
+            }
+        });
+        return false;
+    });
+
+</script>
+</body>
+
+
+

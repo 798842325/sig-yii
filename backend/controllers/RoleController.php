@@ -6,6 +6,7 @@ use common\models\Admin;
 use common\models\AuthGroup;
 use common\models\AuthGroupAccess;
 use common\models\AuthRule;
+use common\models\User;
 use Yii;
 use yii\data\Pagination;
 use yii\helpers\Url;
@@ -201,8 +202,8 @@ class RoleController extends BaseController
         }
 
         //实例化模型
-        $Admin = new Admin();
-        $Query = $Admin ->find();
+        $User = new User();
+        $Query = $User ->find();
         //获取所有用户
         $d_admin=$Query ->all();
         //获取已分配的用户

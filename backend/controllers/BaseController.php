@@ -28,8 +28,8 @@ class BaseController extends Controller
      */
     public function beforeAction($action)
     {
-
         if(parent::beforeAction($action)){
+            //判断是否登录
             if(!Yii::$app->user->isGuest){
                 Yii::$app->params['menu']=$this ->getMenu();
             }
@@ -47,7 +47,6 @@ class BaseController extends Controller
     public function getMenu(){
         //获取用户ID
         $UID=Yii::$app->user->identity->getId();
-
         //获取菜单
         $Menu=new Menu();
         $d_menu=$Menu ->getMenu($UID);

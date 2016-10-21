@@ -64,7 +64,7 @@ $this->title = $meta_title;
                             <td><?=$td['title']?></td>
                             <td><?=$td['cate_id']?></td>
                             <td><?=$td['pid']?:'顶级分类'?></td>
-                            <td><img src="<?=Url::to($td['cover'])?>" alt="" width="50px" height="50px"></td>
+                            <td><img src="<?=Url::to($td['cover']?:'/public/uploads/slide_default.png')?>" alt="" width="50px" height="50px"></td>
                             <td><?=$td['sort']?></td>
                             <td><?=$td['status']?Html::a('禁用',['state','id'=>$td['id'],'status'=>0],['class'=>'ajax-get']):Html::a('启用',['state','id'=>$td['id'],'status'=>1],['class'=>'ajax-get'])?></td>
                             <td class="text-navy">

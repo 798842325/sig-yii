@@ -1,14 +1,15 @@
 <?php
 namespace backend\controllers;
 
-use Yii;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
+
 use backend\models\LoginForm;
-use backend\models\Menu;
-use common\libs\Helpers;
 use common\models\UploadForm;
+use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\data\Pagination;
+use yii\helpers\Url;
+use yii\web\Controller;
 use yii\web\UploadedFile;
 
 /**
@@ -16,6 +17,7 @@ use yii\web\UploadedFile;
  */
 class SiteController extends BaseController
 {
+
     /**
      * @inheritdoc
      */
@@ -24,13 +26,15 @@ class SiteController extends BaseController
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'only' => ['logout', 'signup','login','index','error','upload'],
                 'rules' => [
                     [
-                        'actions' => ['login', 'error','upload'],
+                        'actions' => ['signup','login','error'],
                         'allow' => true,
+                        'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout','index','upload'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -38,18 +42,9 @@ class SiteController extends BaseController
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
-            ],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
+                'actions' => [
+                    'logout' => ['post'],
+                ],
             ],
         ];
     }
@@ -93,7 +88,6 @@ class SiteController extends BaseController
 
     public function actionLogin()
     {
-
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -114,6 +108,18 @@ class SiteController extends BaseController
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+
+    /**
+     * 更新全部缓存
+     */
+    public function actionUpdateCache(){
+        header("Content-type:text/html;charset=utf-8");
+        echo '<p>轮播缓存:更新中...</p>';
+        echo '<p>'.Yii::$app->runAction('slide/cache-slide')?'轮播缓存:更新成功...':'轮播缓存:更新失败...'.'</p>';
+        echo '<p>分类缓存:更新中...</p>';
+        echo '<p>'.Yii::$app->runAction('classify/cache-classify')?'分类缓存:更新成功...':'分类缓存:更新失败...'.'</p>';
     }
 
 }

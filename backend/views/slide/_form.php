@@ -10,6 +10,10 @@ use yii\helpers\Url;
 $this->title = $meta_title;
 
 ?>
+<style>
+    #upload-img-one,.upload-img-one{ width:200px; height:100px;  position: relative; text-align: center; overflow: hidden; margin-right:15px; padding: 0px;}
+    #upload-img-one:hover .upload-img-btn,.upload-img-one:hover .upload-img-btn{ padding:20% 28%;  top:0px; left:0px; width: 100%; height:100%; background: rgba(0,0,0,0.5);}
+</style>
 
     <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
@@ -51,12 +55,12 @@ $this->title = $meta_title;
                         <?=$form->field($model,'title')->textInput(['class'=>'form-control'])->label('名称：',['class'=>'col-sm-2  control-label'])?>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">图标: </label>
+                            <label class="col-sm-2 control-label">Banner图片: </label>
                             <div class="col-sm-10">
                                 <div id="upload-img-one">
-                                    <img src="<?=Url::to($model->picture?:'@upload/uploads/avatar/admin_pic.png') ?>" alt="">
+                                    <img src="<?=$model->picture?:'/public/uploads/slide_default.png' ?>" alt="">
                                     <div class="upload-img-btn"> <div id="filePicker">选择图片</div></div>
-                                    <input type="hidden" name="<?=$model->formName()?>[picture]" value="<?=$model->picture?:'@upload/uploads/avatar/admin_pic.png'?>">
+                                    <input type="hidden" name="<?=$model->formName()?>[picture]" value="<?=$model->picture?>">
                                 </div>
                             </div>
                         </div>
@@ -123,7 +127,7 @@ $this->title = $meta_title;
             formData:{
                 _csrf:'<?php echo Yii::$app->getRequest()->getCsrfToken(); ?>',
                 resType:'ajax',
-                savePath:'slide/',
+                savePath:'uploads/slide/',
             },
             fileVal:'UploadForm[File]',
 
@@ -189,7 +193,7 @@ $this->title = $meta_title;
             $( '#upload-img-one' ).addClass('upload-state-done');
 
             if(data['status']){
-                $('#upload-img-one').find('input').attr('value','@upload'+data.savePath);
+                $('#upload-img-one').find('input').attr('value',data.savePath);
             }
         });
 

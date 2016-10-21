@@ -27,7 +27,7 @@ class UploadForm extends Model
     public function upload($savePath='')
     {
         if ($this->validate()) {
-            $saveDir= '../../common/web/uploads/'.$savePath;
+            $saveDir= '../../public/'.$savePath;
             if(!is_dir($saveDir))
             {
                if(mkdir($saveDir)){
@@ -37,7 +37,7 @@ class UploadForm extends Model
             }
             $saveName = md5($this->File->baseName). '.' . $this->File->extension;
             $this->File->saveAs($saveDir .$saveName);
-            $data['savePath'] = '/uploads/'.$savePath.$saveName;
+            $data['savePath'] = '/public/'.$savePath.$saveName;
             $data['saveName'] = $saveName;
             $data['status'] = 1;
             return $data;

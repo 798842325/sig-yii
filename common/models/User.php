@@ -26,7 +26,8 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 1;
 
-    public $password,$verifyPassword;
+    public $password;
+    public $verifyPassword;
 
     /**
      * @inheritdoc
@@ -53,15 +54,15 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             ['email', 'email'],
-            ['nickname','required'],
             ['nickname','string','length' =>[1,20]],
+            ['realname','string','length' =>[1,30]],
+            [['password','username'],'string'],
             [['username','phone','email'],'unique'],
-//            ['password', 'validatePassword'],
             ['verifyPassword', 'compare', 'compareAttribute' =>'password', 'message' => '两次密码输入不一致'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            ['phone', 'number'],
-            [['avatar','email'],'filter','filter' => 'trim', 'skipOnArray' => true],
+            [['phone','type','head_user_id','invite_code'], 'number'],
+            [['avatar','email'],'string'],
         ];
     }
 
@@ -82,18 +83,18 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds user by username
+     * 根据用户 usernmae 查询用户
      *
      * @param string $username
      * @return static|null
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['username'=>$username, 'status'=>self::STATUS_ACTIVE]);
     }
 
     /**
-     * Finds user by phone
+     * 通过手机号查询用户
      *
      * @param string $phone
      * @return static|null
@@ -101,6 +102,17 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findByPhone($phone)
     {
         return static::findOne(['phone' => $phone, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    /**
+     * 通过手机号查询用户
+     *
+     * @param string $phone
+     * @return static|null
+     */
+    public static function findByEmail($email)
+    {
+        return static::findOne(['eamil' => $email, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -161,6 +173,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->getAuthKey() === $authKey;
     }
+
 
     /**
      * Validates password

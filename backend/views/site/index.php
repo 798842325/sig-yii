@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = Yii::$app->cache->get('WEB_SITE_TITLE');
 ?>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 <div id="wrapper">
@@ -46,9 +46,11 @@ $this->title = 'My Yii Application';
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                    <?php foreach ($vm['_child'] as $ks =>$vs): ?>
-                        <li><a class="J_menuItem" href="<?= Url::to($vs['route']) ?>" data-index="<?=$ks?>"><?=$vs['name']?></a></li>
-                    <?php endforeach;?>
+                    <?php if (!empty($vm['_child'])): ?>
+                        <?php foreach ($vm['_child'] as $ks =>$vs): ?>
+                            <li><a class="J_menuItem" href="<?= Url::to($vs['route']) ?>" data-index="<?=$ks?>"><?=$vs['name']?></a></li>
+                        <?php endforeach;?>
+                     <?php endif; ?>
                     </ul>
                 </li>
                 <?php endforeach; ?>

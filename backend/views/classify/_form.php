@@ -70,9 +70,9 @@ $this->title = $meta_title;
                             <label class="col-sm-2 control-label">图标: </label>
                             <div class="col-sm-10">
                                 <div id="upload-img-one">
-                                    <img src="<?=Url::to($model->cover?:'@upload/uploads/avatar/admin_pic.png') ?>" alt="">
+                                    <img src="<?=Url::to($model->cover?:'/public/uploads/slide_default.png') ?>" alt="">
                                     <div class="upload-img-btn"> <div id="filePicker">选择图片</div></div>
-                                    <input type="hidden" name="<?=$model->formName()?>[cover]" value="<?=$model->cover?:'@upload/uploads/avatar/admin_pic.png'?>">
+                                    <input type="hidden" name="<?=$model->formName()?>[cover]" value="<?=$model->cover?>">
                                 </div>
                             </div>
                         </div>
@@ -137,7 +137,7 @@ $this->title = $meta_title;
             formData:{
                 _csrf:'<?php echo Yii::$app->getRequest()->getCsrfToken(); ?>',
                 resType:'ajax',
-                savePath:'slide/',
+                savePath:'uploads/classify/',
             },
             fileVal:'UploadForm[File]',
 
@@ -203,7 +203,7 @@ $this->title = $meta_title;
             $( '#upload-img-one' ).addClass('upload-state-done');
 
             if(data['status']){
-                $('#upload-img-one').find('input').attr('value','@upload'+data.savePath);
+                $('#upload-img-one').find('input').attr('value',data.savePath);
             }
         });
 

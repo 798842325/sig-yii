@@ -52,5 +52,19 @@ class Classify extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * 获取分类
+     * @param array $where
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function CateList($where=['type'=>2],$is_array=true){
+       $classify= ClassifyType::find()->joinWith([
+          'classify' =>function ($query) { $query->orderBy(['sort'=>SORT_DESC]);}
+      ])->where($where)->asArray($is_array)->all();
+
+        return $classify['classify'];
+
+    }
+
 
 }

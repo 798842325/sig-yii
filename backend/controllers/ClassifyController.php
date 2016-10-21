@@ -171,7 +171,7 @@ class ClassifyController extends BaseController
         ])->orderBy(['sort'=>SORT_DESC])->asArray()->all();
 
         foreach ($d_classify as $k=>$v){
-            $arr[$v['name']]=Helpers::list_to_tree($v['classify']);
+            $arr[$v['name']]=$v['classify'];
         }
 
         $cache->set('CLASSIFY',$arr);

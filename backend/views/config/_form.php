@@ -38,7 +38,27 @@ $this->title = $meta_title;
 
                         <?=$form->field($model,'title')->textInput(['class'=>'form-control'])->label('配置标题：',['class'=>'col-sm-2  control-label'])?>
 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">配置类型:</label>
+
+                            <div class="col-sm-10">
+                                <div class="col-sm-4 m-l-n">
+                                    <select class="form-control"   name="<?=$model ->formName()?>[config_type]">
+                                        <option value="1">文本</option>
+                                        <option value="2">数组</option>
+                                        <option value="3">数字</option>
+                                        <option value="4">字符串</option>
+                                        <option value="5">枚举</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <?=$form->field($model,'value')->textarea(['class'=>'form-control'])->label('配置值：',['class'=>'col-sm-2  control-label'])?>
+
+                        <?=$form->field($model,'item')->textarea(['class'=>'form-control'])->label('配置项：',['class'=>'col-sm-2  control-label'])?>
+
 
                         <?=$form->field($model,'remark')->textarea(['class'=>'form-control'])->label('配置说明：',['class'=>'col-sm-2  control-label'])?>
 

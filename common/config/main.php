@@ -4,6 +4,7 @@ return [
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
+            'cachePath'=>__DIR__. '/../../common/runtime/cache',
         ],
     ],
 ];

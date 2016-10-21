@@ -12,10 +12,8 @@ nav .page-form input[type="text"]{ width:40px; text-align: center; }
 .table-list a{ font-size:12px;}
 
 
-#upload-img-one{ width:120px; height:120px;  position: relative; text-align: center; overflow: hidden;}
-#upload-img-one .upload-img-btn{position: absolute; left:-150px;}
-#upload-img-one:hover .upload-img-btn{ padding:35% 0px;  top:0px; left:0px; width: 100%; height:100%; background: rgba(0,0,0,0.5);}
-/*#upload-img-one #filePicker .webuploader-pick{width:120px;height:120px;}*/
-/*#upload-img-one:hover #filePicker *{display: block;width:100%; height:100%;}*/
+#upload-img-one,.upload-img-one{ width:120px; height:120px;  position: relative; text-align: center; overflow: hidden; margin-right:15px; padding: 0px;}
+#upload-img-one .upload-img-btn,.upload-img-one .upload-img-btn{position: absolute; left:-150px;}
+#upload-img-one:hover .upload-img-btn,.upload-img-one:hover .upload-img-btn{ padding:35% 0px;  top:0px; left:0px; width: 100%; height:100%; background: rgba(0,0,0,0.5);}
 
-#upload-img-one img{ width:100%; height:100%;}
+#upload-img-one img,.upload-img-one img{ width:100%; height:100%;}

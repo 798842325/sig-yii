@@ -39,7 +39,7 @@ class Menu extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data'], 'string'],
+            [['data','icon'], 'string'],
             [['name'], 'string', 'max' => 128],
             [['route'], 'string', 'max' => 255],
             [['pid','sort'],'number'],

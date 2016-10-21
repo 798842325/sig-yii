@@ -15,6 +15,8 @@ use Yii;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $value
+ * @property integer $config_type
+ * @property string $item
  */
 class Config extends \yii\db\ActiveRecord
 {
@@ -32,8 +34,9 @@ class Config extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status'], 'integer'],
-            [['name', 'title', 'remark', 'value'], 'string', 'max' => 255],
+            [['status', 'created_at', 'updated_at', 'config_type'], 'integer'],
+            [['name', 'title', 'remark', 'value', 'item'], 'string', 'max' => 255],
+            [['name'], 'unique'],
         ];
     }
 
@@ -48,7 +51,11 @@ class Config extends \yii\db\ActiveRecord
             'title' => 'Title',
             'remark' => 'Remark',
             'status' => 'Status',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
             'value' => 'Value',
+            'config_type' => 'Config Type',
+            'item' => 'Item',
         ];
     }
 }

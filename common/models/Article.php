@@ -10,6 +10,12 @@ use Yii;
  * @property integer $id
  * @property string $title
  * @property integer $cate_id
+ * @property string $content
+ * @property integer $status
+ * @property integer $sort
+ * @property string $cover
+ * @property integer $created_at
+ * @property integer $updated_at
  */
 class Article extends \yii\db\ActiveRecord
 {
@@ -27,8 +33,9 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cate_id'], 'integer'],
-            [['title'], 'string', 'max' => 255],
+            [['cate_id', 'status', 'sort', 'created_at', 'updated_at'], 'integer'],
+            [['content'], 'string'],
+            [['title', 'cover','author'], 'string', 'max' => 255],
         ];
     }
 
@@ -41,6 +48,12 @@ class Article extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'cate_id' => 'Cate ID',
+            'content' => 'Content',
+            'status' => 'Status',
+            'sort' => 'Sort',
+            'cover' => 'Cover',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
     }
 }
